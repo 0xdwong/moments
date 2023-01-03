@@ -4,12 +4,12 @@ const momentAddr = require(`../deployments/${network.name}/Moment.json`).address
 
 let momentMinter;
 let moment;
-let sender;
+let owner;
 
 
 async function init() {
     let accounts = await ethers.getSigners();
-    sender = accounts[0];
+    owner = accounts[0];
     // console.log('signer.address', signer.address);
     momentMinter = await ethers.getContractAt('MomentMinter', momentMinterAddr);
     moment = await ethers.getContractAt('Moment', momentAddr);
@@ -25,7 +25,7 @@ async function createMoment() {
     }
 
     try {
-        await momentMinter.connect(sender).createMoment(momentData, '0x');
+        await momentMinter.connect(owner).createMoment(momentData, '0x');
         console.log('====createMoment succeed====\n');
     } catch (err) {
         console.log('====createMoment failed====\n', err);
@@ -34,17 +34,47 @@ async function createMoment() {
 
 async function tokenUri() {
     try {
-        const uri = await moment.connect(sender).uri(10000001);
+        const uri = await moment.connect(owner).uri(10000001);
         console.log('====tokenUri====', uri);
     } catch (err) {
         console.log('====tokenUri failed====', err);
     }
 }
 
+async function nameAndSymbol() {
+    try {
+        const name = await moment.connect(owner).name();
+        const symbol = await moment.connect(owner).symbol();
+
+        console.log('====nameAndSymbol====', {name, symbol});
+    } catch (err) {
+        console.log('====nameAndSymbol failed====', err);
+    }
+}
+
+async function setNameAndSymbol() {
+    try {
+        await moment.connect(owner).setName('The Moment');
+        await moment.connect(owner).setSymbol('TMM');
+
+        const name = await moment.connect(owner).name();
+        const symbol = await moment.connect(owner).symbol();
+
+        console.log('====setNameAndSymbol====', {name, symbol});
+    } catch (err) {
+        console.log('====setName failed====', err);
+    }
+}
+
+
 async function main() {
     await init();
 
-    await createMoment();
+    // await createMoment();
+
+    // await nameAndSymbol();
+
+    // await setNameAndSymbol();
 
     // await tokenUri();
 }
