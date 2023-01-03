@@ -1,0 +1,15 @@
+[
+  "constructor()",
+  "event Claimed(uint256 indexed,address indexed)",
+  "event Initialized(uint8)",
+  "event MomentCreated(address indexed,uint256 indexed,tuple(string,string,uint32,uint32,uint192))",
+  "event OwnershipTransferred(address indexed,address indexed)",
+  "function claim(uint256) payable",
+  "function createMoment(tuple(string,string,uint32,uint32,uint192),bytes)",
+  "function initialize(address)",
+  "function moment() view returns (address)",
+  "function owner() view returns (address)",
+  "function renounceOwnership()",
+  "function startTokenId() view returns (uint256)",
+  "function transferOwnership(address)"
+]

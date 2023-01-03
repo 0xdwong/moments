@@ -1,0 +1,18 @@
+{
+  "name": "moments",
+  "version": "1.0.0",
+  "keywords": [
+    "web3",
+    "moments"
+  ],
+  "private": true,
+  "scripts": {
+    "chain": "yarn workspace contract chain",
+    "contract:test": "yarn workspace contract test"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
+}
