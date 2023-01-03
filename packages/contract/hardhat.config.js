@@ -9,7 +9,6 @@ dotenv.config({ 'path': path.join(path.resolve(__dirname, '.'), '.env') });
 
 
 const mnemonic = process.env.MNEMONIC;
-const providerUrl = process.env.PROVIDER_URL;
 const scankey = process.env.ETHERSCAN_API_KEY;
 const privateKey = process.env.PRIVATE_KEY
 
@@ -50,7 +49,7 @@ module.exports = {
             },
         },
         main: {
-            url: providerUrl,
+            url: 'https://rpc.flashbots.net',
             accounts: {
                 count: 1,
                 initialIndex: 0,
