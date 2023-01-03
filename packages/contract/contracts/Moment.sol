@@ -17,13 +17,17 @@ contract Moment is IMoment, OwnableUpgradeable, ERC1155Upgradeable {
     string public name;
     string public symbol;
 
+    // 2023.01.03
+    event NameChanged(string oldName, string newName);
+    event SymbolChanged(string oldSymbol, string newSymbol);
+
     constructor() {}
 
     function initialize(string memory uri_) public initializer {
         __Ownable_init();
         __ERC1155_init(uri_);
-        name = "Moments";
-        symbol = "MMTS";
+        name = "The Moment";
+        symbol = "TMM";
     }
 
     modifier onlyMinter() {
@@ -139,5 +143,17 @@ contract Moment is IMoment, OwnableUpgradeable, ERC1155Upgradeable {
      */
     function _exists(uint256 tokenId) internal view returns (bool) {
         return authors[tokenId] != address(0);
+    }
+
+    function setName(string calldata name_) external onlyOwner{
+        require(bytes(name_).length > 0, "Empty name");
+        emit NameChanged(name, name_);
+        name = name_;
+    }
+
+    function setSymbol(string calldata symbol_) external onlyOwner{
+        require(bytes(symbol_).length > 0, "Empty name");
+        emit SymbolChanged(symbol, symbol_);
+        symbol = symbol_;
     }
 }
