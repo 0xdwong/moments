@@ -1,5 +1,7 @@
 MNEMONIC = "test test test test test test test test test test test junk"
 
+PRIVATE_KEY = ""
+
 PROVIDER_URL = "http://127.0.0.1:8545"
 
 ETHERSCAN_API_KEY = ""

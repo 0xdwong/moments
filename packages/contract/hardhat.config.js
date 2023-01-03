@@ -11,6 +11,7 @@ dotenv.config({ 'path': path.join(path.resolve(__dirname, '.'), '.env') });
 const mnemonic = process.env.MNEMONIC;
 const providerUrl = process.env.PROVIDER_URL;
 const scankey = process.env.ETHERSCAN_API_KEY;
+const privateKey = process.env.PRIVATE_KEY
 
 
 module.exports = {
@@ -60,22 +61,12 @@ module.exports = {
         },
         goerli: {
             url: 'https://rpc.ankr.com/eth_goerli',
-            accounts: {
-                count: 1,
-                initialIndex: 0,
-                mnemonic,
-                path: "m/44'/60'/0'/0",
-            },
+            accounts: [privateKey],
             chainId: 5,
         },
         polygon: {
             url: 'https://polygon.llamarpc.com',
-            accounts: {
-                count: 1,
-                initialIndex: 0,
-                mnemonic,
-                path: "m/44'/60'/0'/0",
-            },
+            accounts: [privateKey],
             chainId: 137,
         },
     },
