@@ -41,8 +41,8 @@ const mintParams = {
 describe("Moment", async () => {
   let momentInst;
   let accounts, owner;
-  const name = 'Moments';
-  const symbol = 'MMTS';
+  const name = 'The Moment';
+  const symbol = 'TMM';
   let snapshotId;
   let minter;
 
